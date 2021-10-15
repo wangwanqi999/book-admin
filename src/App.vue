@@ -1,32 +1,55 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <router-view></router-view>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+  },
+};
+</script>
+<style scope lang='scss' >
+// 使用scss报错原因 : 版本冲突
+// npm uninstall sass-loader node-sass
+// npm install sass-loader@8.0.2 sass@1.26.5  --save-dev
 
-<style>
+@import "./style/commons.scss";
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #f5f5f5;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+}
+/* 浏览器自带样式 */
+#js-atavi-extension-install {
+  display: none !important;
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
+}
+/* 根标签 */
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  /* height: 100% ; */
+  width: 100%;
+  /* background-color: #42b983; */
+  /* overflow-y: scroll; */
+  // overflow: hidden;
+  // -webkit-overflow-scrolling: hidden;
+  overflow-y: scroll;
 }
 </style>
