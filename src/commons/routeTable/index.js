@@ -2,7 +2,7 @@ const routes = [
   // 主页面路由表
   {
     path: "/",
-    name: "home",
+    name: "Home",
     // 设置冲定向主页
     redirect: { name: "main", path: "/main" },
     component: "Home",
@@ -40,8 +40,13 @@ let getRoutes = function () {
 function createRoute(arr) {
   for (let i = 0; i < arr.length; i++) {
     if (!arr[i].component) return;
-    // 自动去除path方法
-    // 自动去除name方法
+
+    // 自动去除name方法  默认赋值不进行替换
+    let val = getIndexVal(arr[i].component);
+    console.log(val);
+    arr[i].name = arr[i].name || val.replace(/\//g, "_"); //全局正则替换斜杠
+    // 自动去除path方法 默认赋值不进行替换
+    arr[i].path = arr[i].path || `${val}`;
     // 自动生成component
     let componentFun = import(`../../views/${arr[i].component}/index.vue`);
     arr[i].component = () => componentFun;
@@ -49,5 +54,16 @@ function createRoute(arr) {
       createRoute(arr[i].children);
     }
   }
+}
+// 去除index  返回截取字符号串
+function getIndexVal(str) {
+  if (!str) return "";
+  //  獲取index下標
+  let index = str.lastIndexOf("/");
+  // 判断是否以index结尾
+  if (str.substring(index + 1, str.length) === "index") {
+    return str.substring(0, index);
+  }
+  return str;
 }
 export default getRoutes();

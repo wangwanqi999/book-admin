@@ -9,7 +9,7 @@ const router = new VueRouter({
 //修改动态网页标题 beforeEach 导航钩子，路由改变前触发
 router.beforeEach((to, from, next) => {
   try {
-    window.document.title = to.meta.title; //修改页面地址名称
+    window.document.title = to.meta.title; //修改页面地址名称                                                                       -++
   } catch (error) {
     // 尝试更改title失败
     console.error(error);
