@@ -2,7 +2,7 @@ const routes = [
   // 主页面路由表
   {
     path: "/",
-    name: "Home",
+    name: "home",
     // 设置冲定向主页
     redirect: { name: "main", path: "/main" },
     component: "Home",
@@ -26,8 +26,13 @@ const routes = [
   {
     path: "*",
     name: "404",
-    mate: { title: "页面丢失" },
+    meta: { title: "页面丢失" },
     component: "About",
+  },
+  // 登录页面
+  {
+    mata: { title: "登录页面" },
+    component: "Login",
   },
 ];
 // 获取路由信息方法

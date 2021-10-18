@@ -1,5 +1,6 @@
 <template>
   <div class="about">
+    页面无地址
     <h1>西部水泥</h1>
     <el-radio-group v-model="radio" change="checkRadio">
       <el-radio :label="1">地下电子市场</el-radio>
@@ -27,7 +28,7 @@
 // 全局路由已经注册 取消button局部注册
 // import sButton from "../components/s-button.vue";
 export default {
-  name: "About",
+  name: "about",
   components: {},
   data() {
     return {

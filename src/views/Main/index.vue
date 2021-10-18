@@ -1,8 +1,9 @@
 <template>
-  <div>首页</div>
+  <div id="main">页面</div>
 </template>
 <script>
 export default {
+  name: "main",
   data() {
     return {};
   },
