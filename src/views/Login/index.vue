@@ -20,7 +20,7 @@
                 class="text-center mb-0 text-danger"
                 style="height: 80px; line-height: 80px"
               >
-                UNI-ADMIN
+                西部水泥大宗系统
               </h3>
             </div>
             <!-- 中间登录表单 -->
@@ -104,10 +104,16 @@ export default {
           userInfo = this.ruleForm
           localStorage.setItem('userInfo', JSON.stringify(userInfo))
           // 登录之后进行home页面
-          this.$router.push({
-            path: '/home',
-            name: 'home',
+          this.$message({
+            type: 'success',
+            message: '登录成功, 即将进入首页, 请稍后.....',
           })
+          setTimeout(() => {
+            this.$router.push({
+              path: '/home',
+              name: 'home',
+            })
+          }, 1000)
         } else {
           this.$message('输入有误')
         }
@@ -147,6 +153,12 @@ export default {
     resetForm(val) {
       this.$refs[val].resetFields()
     },
+  },
+  mounted() {
+    // 反显用户信息
+    let userInfo = localStorage.getItem('userInfo')
+    this.ruleForm = Object.assign(this.ruleForm, JSON.parse(userInfo))
+    console.log(this.ruleForm)
   },
 }
 </script>
