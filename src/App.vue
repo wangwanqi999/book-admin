@@ -24,7 +24,9 @@ body {
   background-color: #f5f5f5;
   padding: 0px;
   margin: 0px;
-  overflow: scroll;
+  // 此处设置overflow scroll 滚动之后 会导致右侧出现多余滚动条
+  // overflow: scroll;
+  // overflow-y: scroll;
   min-width: 980px;
 }
 /* 浏览器自带样式 */
@@ -46,7 +48,5 @@ body {
   color: #2c3e50;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  -webkit-overflow-scrolling: hidden;
 }
 </style>
