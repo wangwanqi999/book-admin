@@ -6,18 +6,17 @@
 <script>
 export default {
   data() {
-    return {};
+    return {}
   },
-  methods: {
-  },
-};
+  methods: {},
+}
 </script>
-<style scope lang='scss' >
+<style scope lang="scss">
 // 使用scss报错原因 : 版本冲突
 // npm uninstall sass-loader node-sass
 // npm install sass-loader@8.0.2 sass@1.26.5  --save-dev
 
-@import "./style/commons.scss";
+@import './style/commons.scss';
 html,
 body {
   height: 100%;
@@ -25,7 +24,8 @@ body {
   background-color: #f5f5f5;
   padding: 0px;
   margin: 0px;
-  display: flex;
+  overflow: scroll;
+  min-width: 980px;
 }
 /* 浏览器自带样式 */
 #js-atavi-extension-install {
@@ -44,12 +44,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  /* height: 100% ; */
   width: 100%;
-  /* background-color: #42b983; */
-  /* overflow-y: scroll; */
-  // overflow: hidden;
-  // -webkit-overflow-scrolling: hidden;
-  overflow-y: scroll;
+  height: 100%;
+  overflow: hidden;
+  -webkit-overflow-scrolling: hidden;
 }
 </style>

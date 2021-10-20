@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="login">
     <div class="container">
       <div class="row">
         <div
@@ -163,9 +163,22 @@ export default {
 }
 </script>
 <style scoped>
+body {
+  padding: 0px;
+  margin: 0px;
+  background-color: red;
+}
+/* 当前login页面背景导航 */
+#login {
+  background-image: url('../../assets/afe42c70-9a1b-4e60-91a3-faf606f5993d.jpg');
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+  padding-top: 150px;
+}
 .container {
-  /* margin */
-  margin-top: 150px;
+  overflow: hidden;
 }
 .m-auto {
   margin: 0px auto;
