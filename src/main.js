@@ -7,11 +7,16 @@ import store from './store'
 // 导入element
 import ElementUI from './commons/utils/diologHelper'
 import 'element-ui/lib/theme-chalk/index.css'
-
+import sloading from './components/componentsTable/s-loading'
+Vue.use(ElementUI)
+Vue.use(sloading, {
+  icon: require('./assets/mainLogo.jpeg'),
+  progressColor: 'blue',
+  text: '正在加载中。。。。。。',
+})
 // 导入组件表
 // import componentObject from '@/components/componentsTable/index.js'
 // 插件安装
-Vue.use(ElementUI)
 // // 注册组件
 // for (const key in componentObject) {
 //   Vue.component(key, componentObject[key])

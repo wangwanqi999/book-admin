@@ -78,7 +78,8 @@ export default {
     dialog() {
       // this.$myLoading('华影')
       // console.log(this.$myLoading)
-      this.$myLoading.open(true)
+      this.$sloading.open()
+      console.log(this.$sloading)
       this.$confirm('欢迎来到西部水泥！')
         .then(() => {})
         .catch(() => {})
