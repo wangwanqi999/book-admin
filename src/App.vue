@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app1">
     <router-view></router-view>
   </div>
 </template>
@@ -28,6 +28,7 @@ body {
   // overflow: scroll;
   // overflow-y: scroll;
   min-width: 980px;
+  overflow: hidden;
 }
 /* 浏览器自带样式 */
 #js-atavi-extension-install {
@@ -40,7 +41,7 @@ body {
   background-color: #555;
 }
 /* 根标签 */
-#app {
+#app1 {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -48,5 +49,12 @@ body {
   color: #2c3e50;
   width: 100%;
   height: 100%;
+}
+// v-modal修改的弹出框是背景颜色的
+// ::v-deep .v-modal {
+//   background-color: red !important;
+// }
+.v-modal {
+  background-color: rgb(97, 91, 91) !important;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div id="login">
+  <div id="login1">
     <div class="container">
       <div class="row">
         <div
@@ -169,7 +169,7 @@ body {
   background-color: red;
 }
 /* 当前login页面背景导航 */
-#login {
+#login1 {
   background-image: url('../../assets/afe42c70-9a1b-4e60-91a3-faf606f5993d.jpg');
   overflow: hidden;
   width: 100%;

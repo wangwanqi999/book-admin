@@ -152,3 +152,15 @@ body {
 .animation_opactiy {
   animation: backOpacity 2s ease-in-out infinite;
 }
+// 全局diolog遮罩字体
+// 模糊处理的css
+.allblur {
+  -webkit-filter: blur(2px);
+  -moz-filter: blur(2px);
+  -ms-filter: blur(2px);
+  filter: blur(2px);
+  zoom: 1;
+}
+.v-modal {
+  background-color: red !important;
+}

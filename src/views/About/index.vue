@@ -18,7 +18,7 @@
         aria-valuemax="100"
         style="min-width: 2em"
       >
-        {{radio}}
+        {{ radio }}
       </div>
     </div>
   </div>
@@ -28,22 +28,22 @@
 // 全局路由已经注册 取消button局部注册
 // import sButton from "../components/s-button.vue";
 export default {
-  name: "about",
+  name: 'about',
   components: {},
   data() {
     return {
       radio: 0.3,
-    };
+    }
   },
   methods: {
     checkRadio() {
-      console.log(this.radio);
+      console.log(this.radio)
     },
     // 跳转登录页面
     toLogin() {
-      let info = { name: "Login" };
-      this.$router.push(info);
+      let info = { name: 'Login' }
+      this.$router.push(info)
     },
   },
-};
+}
 </script>
