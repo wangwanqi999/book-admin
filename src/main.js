@@ -7,14 +7,15 @@ import store from './store'
 // 导入element
 import ElementUI from './commons/utils/diologHelper'
 import 'element-ui/lib/theme-chalk/index.css'
+
 // 导入组件表
-import componentObject from '@/components/componentsTable/index.js'
+// import componentObject from '@/components/componentsTable/index.js'
 // 插件安装
 Vue.use(ElementUI)
-// 注册组件
-for (const key in componentObject) {
-  Vue.component(key, componentObject[key])
-}
+// // 注册组件
+// for (const key in componentObject) {
+//   Vue.component(key, componentObject[key])
+// }
 Vue.config.productionTip = false
 import Router from 'vue-router'
 const routerPush = Router.prototype.push

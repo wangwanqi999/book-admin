@@ -28,7 +28,7 @@
     <el-table-column
       v-for="(th, key) in tableHeader"
       :key="key"
-      :prop="th.prop"0"
+      :prop="th.prop"
       :fixed="th.fixed"
       :width="th.width"
       :min-width="th.minWidth"

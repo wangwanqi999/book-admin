@@ -4,7 +4,7 @@ const routes = [
     path: '/',
     name: 'home',
     // 设置冲定向主页
-    redirect: { name: 'main', path: '/main' },
+    redirect: { name: 'mainPage', path: '/main' },
     component: 'Home',
     // 主页面子路由
     children: [
