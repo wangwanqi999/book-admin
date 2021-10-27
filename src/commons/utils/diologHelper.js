@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import sButton from '../../components/s-button.vue'
+import sloading from '../../components/componentsTable/s-loading'
 
 //这里的 icon 要换成你本地的   注册loading组件
 // 局部注册组件
@@ -174,6 +175,11 @@ const ElementUI = {
     Vue.use(PageHeader)
     Vue.use(CascaderPanel)
     Vue.use(Loading.directive)
+    Vue.use(sloading, {
+      icon: require('../../assets/mainLogo.jpeg'),
+      progressColor: 'blue',
+      text: '正在加载中。。。。。。',
+    })
   },
 }
 Vue.prototype.$loading = Loading.service

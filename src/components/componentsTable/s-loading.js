@@ -1,4 +1,5 @@
 import sLoading from './../s-loading.vue'
+// 暴露dialog函数  在main中use
 export default {
   install(Vue, options) {
     // Vue  接受参数vue实例对象
@@ -25,13 +26,20 @@ export default {
       // 3.如需进行后续操作 可将其进行设置传入更多参数。。。。。。。。。。
     }
     const profailMethod = {
-      open() {
+      /**
+       * params： loading文本提示内容
+       */
+      open(text) {
+        if (text) {
+          profail.text = text
+        }
         profail.show = true
       },
       closed() {
         profail.show = false
       },
     }
+    // 此处是给sloading添加open closed方法
     Vue.prototype.$sloading = profailMethod
   },
 }
