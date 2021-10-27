@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import sButton from '../../components/s-button.vue'
+import sloading from '../../components/componentsTable/s-loading'
 
 //这里的 icon 要换成你本地的   注册loading组件
-import myLoading from '../.././components/componentsTable/s-loading'
-console.log(myLoading)
 // 局部注册组件
 import {
   Pagination,
@@ -84,7 +83,6 @@ import {
   Message,
   Notification,
 } from 'element-ui'
-console.log(Dialog)
 const openAfter = function () {
   // 在body上添加classname名称为allblur的类名
   document.getElementById('app').classList.add('allblur')
@@ -177,9 +175,10 @@ const ElementUI = {
     Vue.use(PageHeader)
     Vue.use(CascaderPanel)
     Vue.use(Loading.directive)
-    Vue.use(myLoading, {
+    Vue.use(sloading, {
       icon: require('../../assets/mainLogo.jpeg'),
       progressColor: 'blue',
+      text: '正在加载中。。。。。。',
     })
   },
 }
