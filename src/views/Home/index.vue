@@ -16,25 +16,14 @@
           text-color="#fff"
           active-text-color="#ffd04b"
         >
-          <el-menu-item index="1">处理中心</el-menu-item>
-          <el-submenu index="2">
-            <template slot="title">我的工作台</template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
-            <el-submenu index="2-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="2-4-1">选项1</el-menu-item>
-              <el-menu-item index="2-4-2">选项2</el-menu-item>
-              <el-menu-item index="2-4-3">选项3</el-menu-item>
-            </el-submenu>
-          </el-submenu>
-          <el-menu-item index="3">消息中心</el-menu-item>
-          <el-menu-item index="4"
-            ><a href="https://www.ele.me" target="_blank"
-              >订单管理</a
-            ></el-menu-item
+          <el-menu-item
+            v-for="(item, i) in menuList"
+            @click="handleClickMenu(item)"
+            :key="i"
+            :index="item.id"
           >
+            <div>{{ item.name }}</div>
+          </el-menu-item>
         </el-menu>
         <!-- 个人中心设置 -->
         <div>个人中心设置</div>
@@ -43,11 +32,7 @@
       <!-- 主布局容器 -->
       <el-container>
         <!-- 边导航 -->
-        <el-aside width="200px">
-          <li v-for="(item, index) in 100" :key="index">
-            {{ item + '王万琦' }}
-          </li>
-        </el-aside>
+        <el-aside width="200"> </el-aside>
         <!-- 子路由出口 -->
         <el-main>
           <router-view></router-view>
@@ -62,6 +47,49 @@ export default {
   data() {
     return {
       activeIndex2: '1',
+      menuList: [
+        // 首页
+        {
+          name: '首页',
+          id: '1',
+          subMenuList: [
+            {
+              name: '系统首页',
+              iconFont: 'el-icon-location',
+              path: '/home',
+              id: '1-1',
+            },
+          ],
+        },
+        // 订单
+        {
+          name: '订单',
+          id: '2',
+          subMenuList: [
+            {
+              name: '订单列表',
+              iconFont: 'el-icon-location',
+              id: '2-1',
+            },
+          ],
+        },
+        // 设置
+        {
+          name: '设置',
+          id: '3',
+          subMenuList: [
+            {
+              name: '个人中心',
+              iconFont: 'el-icon-location',
+              id: '3-1',
+            },
+          ],
+        },
+        {
+          name: '中央配置库',
+          id: '4',
+        },
+      ],
     }
   },
   methods: {
@@ -83,6 +111,17 @@ export default {
         this.$sloading.closed()
       }, 3000)
     },
+    handleClickMenu(item) {
+      this.activeIndex2 = item.id
+    },
+    // aside展开项
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath)
+    },
+    // 关闭项
+    handleClose(key, keyPath) {
+      console.log(key, keyPath)
+    },
   },
 }
 </script>
@@ -101,6 +140,7 @@ export default {
 }
 
 .el-aside {
+  width: 100px !important;
   background-color: #d3dce6;
   color: #333;
   text-align: center;
@@ -111,7 +151,6 @@ export default {
   background-color: #e9eef3;
   color: #333;
   text-align: center;
-  line-height: 160px;
 }
 .containerMain {
   position: absolute;
