@@ -1,7 +1,7 @@
 {
-  "name": "book-admin",
-  "version": "0.1.0",
-  "private": true,
+  "name": "wangwanqi",
+  "version": "0.2.0",
+  "private": false,
   "scripts": {
     "debug": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -51,5 +51,20 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "description": "<!-- 图书管理系统 -->    ## Project setup ``` npm install ```",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangwanqi999/book-admin.git"
+  },
+  "keywords": [
+    "wangwanqi999@"
+  ],
+  "author": "wangwanqi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangwanqi999/book-admin/issues"
+  },
+  "homepage": "https://github.com/wangwanqi999/book-admin#readme"
 }
