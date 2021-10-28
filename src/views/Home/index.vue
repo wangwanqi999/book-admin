@@ -3,6 +3,7 @@
     <!-- 主页面布局 -->
     <el-container class="containerMain">
       <!-- 头部导航 -->
+      <s-button>设置</s-button>
       <el-header class="d-flex f-bewteen">
         <!-- 左侧居中链接图标 -->
         <h3 class="h3 text-align-center" @click="dialog">西部水泥大宗系统</h3>
@@ -20,7 +21,7 @@
             v-for="(item, i) in menuList"
             @click="handleClickMenu(item)"
             :key="i"
-            :index="item.id"
+            :index="item.path"
           >
             <div>{{ item.name }}</div>
           </el-menu-item>
@@ -32,7 +33,19 @@
       <!-- 主布局容器 -->
       <el-container>
         <!-- 边导航 -->
-        <el-aside width="200"> </el-aside>
+        <el-aside>
+          <el-menu
+            default-active="2"
+            class="el-menu-vertical-demo"
+            @open="handleOpen"
+            @close="handleClose"
+            background-color="#fff"
+            text-color="#fff"
+            active-text-color="#ffd04b"
+          >
+            <s-menu :DataList="menuList"></s-menu>
+          </el-menu>
+        </el-aside>
         <!-- 子路由出口 -->
         <el-main>
           <router-view></router-view>
@@ -42,54 +55,13 @@
   </div>
 </template>
 <script>
+import otherRouter from '../../commons/utils/mock'
 export default {
   name: 'home',
   data() {
     return {
       activeIndex2: '1',
-      menuList: [
-        // 首页
-        {
-          name: '首页',
-          id: '1',
-          subMenuList: [
-            {
-              name: '系统首页',
-              iconFont: 'el-icon-location',
-              path: '/home',
-              id: '1-1',
-            },
-          ],
-        },
-        // 订单
-        {
-          name: '订单',
-          id: '2',
-          subMenuList: [
-            {
-              name: '订单列表',
-              iconFont: 'el-icon-location',
-              id: '2-1',
-            },
-          ],
-        },
-        // 设置
-        {
-          name: '设置',
-          id: '3',
-          subMenuList: [
-            {
-              name: '个人中心',
-              iconFont: 'el-icon-location',
-              id: '3-1',
-            },
-          ],
-        },
-        {
-          name: '中央配置库',
-          id: '4',
-        },
-      ],
+      menuList: otherRouter,
     }
   },
   methods: {
@@ -123,6 +95,10 @@ export default {
       console.log(key, keyPath)
     },
   },
+  mounted() {
+    this.menuList = otherRouter
+    console.log(this.menuList)
+  },
 }
 </script>
 <style scoped lang="scss">
@@ -136,7 +112,7 @@ export default {
   background-color: #b3c0d1;
   color: #333;
   text-align: center;
-  line-height: 60px;
+  line-height: 30px;
 }
 
 .el-aside {
@@ -144,7 +120,8 @@ export default {
   background-color: #d3dce6;
   color: #333;
   text-align: center;
-  line-height: 200px;
+  line-height: 20px;
+  font-size: 15px !important;
 }
 
 .el-main {

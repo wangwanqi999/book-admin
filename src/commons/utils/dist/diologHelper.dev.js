@@ -11,12 +11,20 @@ var _sButton = _interopRequireDefault(require("../../components/s-button.vue"));
 
 var _sLoading = _interopRequireDefault(require("../../components/componentsTable/s-loading"));
 
+var _sMenu = _interopRequireDefault(require("../../views/Home/s-menu.vue"));
+
+var _type = require("./type");
+
 var _elementUi = require("element-ui");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-//这里的 icon 要换成你本地的   注册loading组件
+// 导入自定义指令
+var filters = {
+  getToString: _type.getToString
+}; //这里的 icon 要换成你本地的   注册loading组件
 // 局部注册组件
+
 var openAfter = function openAfter() {
   // 在body上添加classname名称为allblur的类名
   document.getElementById('app').classList.add('allblur'); // 同时出发打开事件
@@ -35,9 +43,21 @@ var leaveAfter = function leaveAfter() {
 
 
 _elementUi.Dialog.methods.closed = leaveAfter;
+var componentObject = {
+  sButton: _sButton["default"],
+  sMenu: _sMenu["default"]
+};
 var ElementUI = {
   install: function install() {
-    _vue["default"].use(_sButton["default"]);
+    for (var key in componentObject) {
+      console.log(key);
+
+      _vue["default"].component(key, componentObject[key]);
+    }
+
+    Object.keys(filters).forEach(function (key) {
+      _vue["default"].filter(key, filters[key]);
+    });
 
     _vue["default"].use(_elementUi.Pagination);
 

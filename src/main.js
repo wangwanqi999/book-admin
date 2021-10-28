@@ -13,9 +13,7 @@ Vue.use(ElementUI)
 // import componentObject from '@/components/componentsTable/index.js'
 // 插件安装
 // // 注册组件
-// for (const key in componentObject) {
-//   Vue.component(key, componentObject[key])
-// }
+
 Vue.config.productionTip = false
 import Router from 'vue-router'
 const routerPush = Router.prototype.push

@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import sButton from '../../components/s-button.vue'
 import sloading from '../../components/componentsTable/s-loading'
-
+import sMenu from '../../views/Home/s-menu.vue'
+// 导入自定义指令
+import { getToString } from './type'
+let filters = { getToString: getToString }
 //这里的 icon 要换成你本地的   注册loading组件
 // 局部注册组件
 import {
@@ -98,9 +101,16 @@ const leaveAfter = function () {
 }
 // 重写关闭事件
 Dialog.methods.closed = leaveAfter
+const componentObject = { sButton: sButton, sMenu: sMenu }
 const ElementUI = {
   install: function () {
-    Vue.use(sButton)
+    for (const key in componentObject) {
+      console.log(key)
+      Vue.component(key, componentObject[key])
+    }
+    Object.keys(filters).forEach((key) => {
+      Vue.filter(key, filters[key])
+    })
     Vue.use(Pagination)
     Vue.use(Dialog)
     Vue.use(Autocomplete)
