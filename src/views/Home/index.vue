@@ -3,7 +3,6 @@
     <!-- 主页面布局 -->
     <el-container class="containerMain">
       <!-- 头部导航 -->
-      <s-button>设置</s-button>
       <el-header class="d-flex f-bewteen">
         <!-- 左侧居中链接图标 -->
         <h3 class="h3 text-align-center" @click="dialog">西部水泥大宗系统</h3>
@@ -13,8 +12,8 @@
           class="el-menu-demo"
           mode="horizontal"
           @select="handleSelect"
-          background-color="#545c64"
-          text-color="#fff"
+          background-color="#fff"
+          text-color="#ffffff"
           active-text-color="#ffd04b"
         >
           <el-menu-item
@@ -23,11 +22,14 @@
             :key="i"
             :index="item.path"
           >
-            <div>{{ item.name }}</div>
+            <div>{{ item.meta.title }}</div>
           </el-menu-item>
         </el-menu>
         <!-- 个人中心设置 -->
-        <div>个人中心设置</div>
+        <div class="headerImg">
+          <span class="el-icon-user-solid"></span>
+          王万琦
+        </div>
         <!-- 导航组 -->
       </el-header>
       <!-- 主布局容器 -->
@@ -114,6 +116,9 @@ export default {
   text-align: center;
   line-height: 30px;
 }
+.el-header {
+  padding-right: 0px !important;
+}
 
 .el-aside {
   width: 300px !important;
@@ -144,6 +149,21 @@ export default {
    */
   h3 {
     margin-right: auto;
+  }
+}
+.headerImg {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  // 此处转换坐标轴 不能时使用 align-items进行居中
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 2px 10px;
+  background-color: #fff;
+  img {
+    width: 20px;
+    height: 20px;
   }
 }
 </style>

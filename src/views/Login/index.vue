@@ -102,6 +102,7 @@ export default {
           //  登录成功将数据放置于本地存储中
           let userInfo = {}
           userInfo = this.ruleForm
+          userInfo.token = '1'
           localStorage.setItem('userInfo', JSON.stringify(userInfo))
           // 登录之后进行home页面
           this.$message({
