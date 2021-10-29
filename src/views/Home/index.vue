@@ -116,10 +116,10 @@ export default {
 }
 
 .el-aside {
-  width: 100px !important;
+  width: 300px !important;
   background-color: #d3dce6;
-  color: #333;
-  text-align: center;
+  color: #000000;
+  text-align: left !important;
   line-height: 20px;
   font-size: 15px !important;
 }

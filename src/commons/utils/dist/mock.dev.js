@@ -4,13 +4,20 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
-//异步挂载的路由
+//异步挂载的路由   路由表  后面优化将此处导出的路由表替换router
 //动态需要根据权限加载的路由表
 var asyncRouterMap = [{
   path: '/main',
   // component: Layout,
   meta: {
-    title: 'main',
+    title: '首页',
+    icon: 'el-icon-menu'
+  }
+}, {
+  path: '/person',
+  // component: Layout,
+  meta: {
+    title: '个人中心',
     icon: 'el-icon-menu'
   }
 }, {
@@ -19,15 +26,16 @@ var asyncRouterMap = [{
   redirect: '/nested/menu1',
   name: 'Nested',
   meta: {
-    title: '多级菜单',
+    title: '订单',
     icon: 'el-icon-news'
   },
   children: [{
     path: 'menu1',
-    // component: () => import('@/views/nested/menu1/index'), // Parent router-view
+    // component: () => import('@/views/nested/menu1/index'), // Parent router-vie
     name: 'Menu1',
     meta: {
-      title: 'Menu1'
+      title: '我的订单',
+      icon: 'el-icon-news'
     },
     children: [{
       path: 'menu1-1',
