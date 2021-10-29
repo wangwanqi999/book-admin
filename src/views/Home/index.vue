@@ -7,24 +7,6 @@
         <!-- 左侧居中链接图标 -->
         <h3 class="h3 text-align-center" @click="dialog">西部水泥大宗系统</h3>
         <!-- 导航菜单 -->
-        <el-menu
-          :default-active="activeIndex2"
-          class="el-menu-demo"
-          mode="horizontal"
-          @select="handleSelect"
-          background-color="#fff"
-          text-color="#ffffff"
-          active-text-color="#ffd04b"
-        >
-          <el-menu-item
-            v-for="(item, i) in menuList"
-            @click="handleClickMenu(item)"
-            :key="i"
-            :index="item.path"
-          >
-            <div>{{ item.meta.title }}</div>
-          </el-menu-item>
-        </el-menu>
         <!-- 个人中心设置 -->
         <div class="headerImg">
           <span class="el-icon-user-solid"></span>
@@ -36,20 +18,30 @@
       <el-container>
         <!-- 边导航 -->
         <el-aside>
+          <el-radio-group
+            v-model="isCollapse"
+            style="margin-bottom: 20px"
+            class="collapse"
+          >
+            <el-radio-button :label="false">展开</el-radio-button>
+            <el-radio-button :label="true">收起</el-radio-button>
+          </el-radio-group>
           <el-menu
-            default-active="2"
+            :collapse="isCollapse"
+            :collapse-transition="ture"
+            :default-active="$route.path"
             class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose"
-            background-color="#fff"
+            background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b"
+            @select="handleSelect"
           >
-            <s-menu :DataList="menuList"></s-menu>
+            <s-menu :DataList="DataList"></s-menu>
           </el-menu>
         </el-aside>
         <!-- 子路由出口 -->
         <el-main>
+          <sBreadcrumb :list="DataList"></sBreadcrumb>
           <router-view></router-view>
         </el-main>
       </el-container>
@@ -57,51 +49,31 @@
   </div>
 </template>
 <script>
-import otherRouter from '../../commons/utils/mock'
+import sMenu from "./s-menu";
+import sBreadcrumb from "../../components/s-breadcrumb.vue";
+import { asyncRouterMap } from "../../commons/utils/mock";
 export default {
-  name: 'home',
+  components: { sMenu, sBreadcrumb },
+  name: "home",
   data() {
     return {
-      activeIndex2: '1',
-      menuList: otherRouter,
-    }
+      DataList: asyncRouterMap,
+      isCollapse: false,
+    };
   },
   methods: {
-    toLogin() {
-      this.$router.push({ path: 'Login', name: 'Login' })
-    },
-    mounted() {
-      this.toLogin()
-    },
-    // Headers菜单导航点击选中事件
-    handleSelect(index, indexPath) {
-      console.log(index, indexPath)
-    },
     dialog() {
-      // this.$myLoading('华影')
-      // console.log(this.$myLoading)
-      this.$sloading.open('loading')
+      this.$sloading.open();
       setTimeout(() => {
-        this.$sloading.closed()
-      }, 3000)
+        this.$sloading.closed();
+      }, 1000);
     },
-    handleClickMenu(item) {
-      this.activeIndex2 = item.id
-    },
-    // aside展开项
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath)
-    },
-    // 关闭项
-    handleClose(key, keyPath) {
-      console.log(key, keyPath)
+    handleSelect(key, keypath) {
+      this.$router.push(key);
+      console.log(keypath);
     },
   },
-  mounted() {
-    this.menuList = otherRouter
-    console.log(this.menuList)
-  },
-}
+};
 </script>
 <style scoped lang="scss">
 .m-auto {
@@ -121,7 +93,7 @@ export default {
 }
 
 .el-aside {
-  width: 300px !important;
+  width: auto;
   background-color: #d3dce6;
   color: #000000;
   text-align: left !important;
@@ -165,5 +137,19 @@ export default {
     width: 20px;
     height: 20px;
   }
+}
+// 折叠菜单样式
+.collapse {
+  display: flex;
+  flex-direction: column;
+}
+// 边导航自适应
+aside {
+  width: auto !important;
+}
+// 折叠后卡顿问题
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 250px; //宽度自己掌握
+  height: 100%;
 }
 </style>
