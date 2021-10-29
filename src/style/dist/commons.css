@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body,
 div,
 span,
@@ -40,9 +41,38 @@ figcaption {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
-  &:hover {
-    outline: none;
-  }
+}
+body:hover,
+div:hover,
+span:hover,
+header:hover,
+footer:hover,
+nav:hover,
+section:hover,
+aside:hover,
+article:hover,
+ul:hover,
+dl:hover,
+dt:hover,
+dd:hover,
+li:hover,
+a:hover,
+p:hover,
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover,
+h5:hover,
+h6:hover,
+i:hover,
+b:hover,
+textarea:hover,
+button:hover,
+input:hover,
+select:hover,
+figure:hover,
+figcaption:hover {
+  outline: none;
 }
 
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
@@ -67,11 +97,11 @@ figcaption {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #ccc !important;
 }
-     
-input[type="button"],
-input[type="submit"],
-input[type="search"],
-input[type="reset"] {
+
+input[type=button],
+input[type=submit],
+input[type=search],
+input[type=reset] {
   -webkit-appearance: none;
 }
 
@@ -127,10 +157,6 @@ body {
   white-space: nowrap;
 }
 
-.paddingTop {
-  // padding-top: 1.95rem;
-}
-
 @keyframes backOpacity {
   0% {
     opacity: 1;
@@ -148,12 +174,10 @@ body {
     opacity: 1;
   }
 }
-
 .animation_opactiy {
   animation: backOpacity 2s ease-in-out infinite;
 }
-// 全局diolog遮罩字体
-// 模糊处理的css
+
 .allblur {
   -webkit-filter: blur(2px);
   -moz-filter: blur(2px);
@@ -161,6 +185,7 @@ body {
   filter: blur(2px);
   zoom: 1;
 }
+
 .v-modal {
   background-color: red !important;
 }

@@ -12,27 +12,42 @@
           class="el-menu-demo"
           mode="horizontal"
           @select="handleSelect"
-          background-color="#545c64"
-          text-color="#fff"
+          background-color="#fff"
+          text-color="#ffffff"
           active-text-color="#ffd04b"
         >
           <el-menu-item
             v-for="(item, i) in menuList"
             @click="handleClickMenu(item)"
             :key="i"
-            :index="item.id"
+            :index="item.path"
           >
-            <div>{{ item.name }}</div>
+            <div>{{ item.meta.title }}</div>
           </el-menu-item>
         </el-menu>
         <!-- 个人中心设置 -->
-        <div>个人中心设置</div>
+        <div class="headerImg">
+          <span class="el-icon-user-solid"></span>
+          王万琦
+        </div>
         <!-- 导航组 -->
       </el-header>
       <!-- 主布局容器 -->
       <el-container>
         <!-- 边导航 -->
-        <el-aside width="200"> </el-aside>
+        <el-aside>
+          <el-menu
+            default-active="2"
+            class="el-menu-vertical-demo"
+            @open="handleOpen"
+            @close="handleClose"
+            background-color="#fff"
+            text-color="#fff"
+            active-text-color="#ffd04b"
+          >
+            <s-menu :DataList="menuList"></s-menu>
+          </el-menu>
+        </el-aside>
         <!-- 子路由出口 -->
         <el-main>
           <router-view></router-view>
@@ -42,54 +57,13 @@
   </div>
 </template>
 <script>
+import otherRouter from '../../commons/utils/mock'
 export default {
   name: 'home',
   data() {
     return {
       activeIndex2: '1',
-      menuList: [
-        // 首页
-        {
-          name: '首页',
-          id: '1',
-          subMenuList: [
-            {
-              name: '系统首页',
-              iconFont: 'el-icon-location',
-              path: '/home',
-              id: '1-1',
-            },
-          ],
-        },
-        // 订单
-        {
-          name: '订单',
-          id: '2',
-          subMenuList: [
-            {
-              name: '订单列表',
-              iconFont: 'el-icon-location',
-              id: '2-1',
-            },
-          ],
-        },
-        // 设置
-        {
-          name: '设置',
-          id: '3',
-          subMenuList: [
-            {
-              name: '个人中心',
-              iconFont: 'el-icon-location',
-              id: '3-1',
-            },
-          ],
-        },
-        {
-          name: '中央配置库',
-          id: '4',
-        },
-      ],
+      menuList: otherRouter,
     }
   },
   methods: {
@@ -123,6 +97,10 @@ export default {
       console.log(key, keyPath)
     },
   },
+  mounted() {
+    this.menuList = otherRouter
+    console.log(this.menuList)
+  },
 }
 </script>
 <style scoped lang="scss">
@@ -136,15 +114,19 @@ export default {
   background-color: #b3c0d1;
   color: #333;
   text-align: center;
-  line-height: 60px;
+  line-height: 30px;
+}
+.el-header {
+  padding-right: 0px !important;
 }
 
 .el-aside {
-  width: 100px !important;
+  width: 300px !important;
   background-color: #d3dce6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
+  color: #000000;
+  text-align: left !important;
+  line-height: 20px;
+  font-size: 15px !important;
 }
 
 .el-main {
@@ -167,6 +149,21 @@ export default {
    */
   h3 {
     margin-right: auto;
+  }
+}
+.headerImg {
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  // 此处转换坐标轴 不能时使用 align-items进行居中
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 2px 10px;
+  background-color: #fff;
+  img {
+    width: 20px;
+    height: 20px;
   }
 }
 </style>

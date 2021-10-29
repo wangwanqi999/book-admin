@@ -17,7 +17,15 @@ router.beforeEach((to, from, next) => {
     // 尝试更改title失败
     console.error(error)
   }
-  next()
+  // 判断当前是否登录逻辑
+  let userInfo = JSON.parse(JSON.stringify(localStorage.getItem('userInfo')))
+  // 当前用户没有登录  跳转login也买你
+  if (!userInfo && !userInfo.token && to.path != '/login') {
+    console.log(11)
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 // 设置路由滚动控制  每次路由跳转之后 页面自动滚动到顶部
