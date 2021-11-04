@@ -1,56 +1,92 @@
-//异步挂载的路由   路由表  后面优化将此处导出的路由表替换router
+//如首页和登录页和一些不用权限的公用页面
+import main from "../../views/Main/index";
+import nested from "../../views/nested/index";
+import menu1 from "../../views/nested/menu1/index";
+import menu_1 from "../../views/nested/menu1/menu1-1/index";
+const commonsRouter = [
+  // 主页面路由表
+  {
+    path: "/",
+    name: "home",
+    redirect: { path: "/main" },
+    component: () => {
+      return import("@/views/Home/index");
+    },
+    meta: { title: "页面", icon: "el-icon-news" },
+    children: [
+      {
+        path: "/main",
+        component: main,
+        meta: {
+          title: "监控中心",
+          icon: "el-icon-video-camera",
+        },
+      },
+    ],
+  },
+  {
+    path: "/login",
+    name: "login",
+    meta: { title: "用户登录", icon: "el-icon-news" },
+    component: () => {
+      return import("@/views/Login");
+    },
+  },
+  //   全局404页面
+  {
+    path: "*",
+    name: "404",
+    meta: { title: "页面丢失", icon: "el-icon-news" },
+    component: () => {
+      return import("@/views/About");
+    },
+  },
+];
+
+//异步挂载的路由
 //动态需要根据权限加载的路由表
-// 此处路由表为动态路由  还需要一个固定路由 来显示404页面页面 以及 login页面
-// 思路 : 将主路由home下面的children替换为当前路由
-const asyncRouterMap = [
-  // 主页面
+export const asyncRouterMap = [
   {
-    path: '/main',
-    component: () => import('@/views/Main/index.vue'),
-    meta: { title: '首页', icon: 'el-icon-menu' },
-  },
-  {
-    path: '/404',
-    // component: Layout,
-    meta: { title: '未发现页面', icon: 'el-icon-menu' },
-  },
-  {
-    path: '/nested',
-    // component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
+    path: "/main",
+    // component: () => {
+    //   import("@/views/Main/index");
+    // },
+    parentId: "0",
+    component: main,
     meta: {
-      title: '订单',
-      icon: 'el-icon-news',
+      title: "监控中心",
+      icon: "el-icon-video-camera",
+    },
+  },
+  {
+    path: "/nested",
+    parentId: "0",
+    component: nested,
+    name: "nested",
+    meta: {
+      title: "多级菜单",
+      icon: "el-icon-news",
     },
     children: [
       {
-        path: 'menu1',
-        // component: () => import('@/views/nested/menu1/index'), // Parent router-vie
-        name: 'Menu1',
-        meta: { title: '我的订单', icon: 'el-icon-setting' },
+        path: "/nested/menu1",
+        parentId: "/nested",
+        component: menu1,
+        meta: { title: "Menu1" },
+        name: "menu1",
         children: [
           {
-            path: 'menu1-1',
-            // component: () => import('@/views/nested/menu1/menu1-1/index'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' },
-          },
-          {
-            path: 'menu1-2',
-            // component: () => import('@/views/nested/menu1/menu1-2/index'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-          },
-          {
-            path: 'menu1-3',
-            // component: () => import('@/views/nested/menu1/menu1-3/index'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' },
+            path: "/nested/menu1/menu1-1",
+            parentId: "/nested/menu1",
+            component: menu_1,
+            meta: { title: "Menu1-1" },
           },
         ],
       },
     ],
   },
-]
-export default asyncRouterMap
+];
+// 合并路由
+let routes = commonsRouter;
+routes[0].children = asyncRouterMap;
+export default routes;

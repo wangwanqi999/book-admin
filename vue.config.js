@@ -2,7 +2,7 @@ module: {
   rules: [
     {
       test: /\.(scss|css)?$/,
-      loaders: ["style", "css", "sass"],
+      loaders: ['style', 'css', 'sass'],
     },
-  ];
+  ]
 }
