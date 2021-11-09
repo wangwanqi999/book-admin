@@ -6,17 +6,17 @@
 <script>
 export default {
   data() {
-    return {}
+    return {};
   },
   methods: {},
-}
+};
 </script>
 <style scope lang="scss">
 // 使用scss报错原因 : 版本冲突
 // npm uninstall sass-loader node-sass
 // npm install sass-loader@8.0.2 sass@1.26.5  --save-dev
 
-@import './style/commons.scss';
+@import "./style/commons.scss";
 html,
 body {
   height: 100%;

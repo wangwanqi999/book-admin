@@ -28,7 +28,7 @@
           </el-radio-group>
           <el-menu
             :collapse="isCollapse"
-            :collapse-transition="ture"
+            :collapse-transition="isCollapse"
             :default-active="$route.path"
             class="el-menu-vertical-demo"
             background-color="#545c64"
@@ -42,9 +42,12 @@
         <!-- 子路由出口 -->
         <el-main>
           <sBreadcrumb :list="DataList"></sBreadcrumb>
-          <router-view></router-view>
+          <transition name="slide-fade">
+            <router-view :key="$route.path"></router-view>
+          </transition>
         </el-main>
       </el-container>
+      <el-button @click="troogle">切换</el-button>
     </el-container>
   </div>
 </template>
@@ -59,6 +62,7 @@ export default {
     return {
       DataList: asyncRouterMap,
       isCollapse: false,
+      isTroogle: false,
     };
   },
   methods: {
@@ -71,6 +75,9 @@ export default {
     handleSelect(key, keypath) {
       this.$router.push(key);
       console.log(keypath);
+    },
+    troogle() {
+      this.isTroogle = !this.isTroogle;
     },
   },
 };
@@ -151,5 +158,26 @@ aside {
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 250px; //宽度自己掌握
   height: 100%;
+}
+.fade-transform1-enter-active,
+.fade-transform1-leave-active {
+  opacity: 0;
+}
+.fade-transform1-enter,
+.fade-transform1-leave-to {
+  opacity: 0;
+}
+/* 可以设置不同的进入和离开动画 */
+/* 设置持续时间和动画函数 */
+.slide-fade-enter-active {
+  transition: all 1.9s ease;
+}
+.slide-fade-leave-active {
+  transition: all 1.5 cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: translateX(40px);
+  opacity: 0;
 }
 </style>
