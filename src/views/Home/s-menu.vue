@@ -26,6 +26,7 @@ export default {
   data() {
     return {
       data: "王万琦1",
+      data2: "王万琦2",
     };
   },
   props: {
