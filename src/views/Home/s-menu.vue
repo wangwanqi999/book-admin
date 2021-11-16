@@ -24,7 +24,9 @@
 export default {
   name: "sMenu",
   data() {
-    return {};
+    return {
+      data: "王万琦1",
+    };
   },
   props: {
     DataList: {
