@@ -90,3 +90,7 @@ export const asyncRouterMap = [
 let routes = commonsRouter;
 routes[0].children = asyncRouterMap;
 export default routes;
+console.log("1");
+console.log("2");
+console.log("3");
+console.log("4");
