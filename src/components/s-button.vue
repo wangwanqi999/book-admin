@@ -1,27 +1,16 @@
 <template>
-  <el-button
-    :type="type"
-    :size="size"
-    :disabled="disabled"
-    :loading="loading"
-    :class="{ isRadius: round }"
-    :icon="icon"
-    :textColor="textColor"
-    v-bind:style="buttonStyle"
-    @click="handleClick($event)"
-    >{{ text }}
-  </el-button>
+  <el-button :type="type" :size="size" :disabled="disabled" :loading="loading" :class="{ isRadius: round }" :icon="icon" :textColor="textColor" v-bind:style="buttonStyle" @click="handleClick($event)">{{ text }} </el-button>
 </template>
 <script>
 export default {
-  name: "s-button",
+  name: 's-button',
   data() {
     return {};
   },
   methods: {
     handleClick(event) {
-      let info = "clickButton";
-      this.$emit("click", {info,event});
+      let info = 'clickButton';
+      this.$emit('click', { info, event });
     },
   },
   watch: {
@@ -53,7 +42,7 @@ export default {
     // 设置前置图标 默认为空  此功能与loading属性互斥
     icon: {
       type: String,
-      dafault: () => "",
+      dafault: () => '',
     },
     // 设置是否为加载中状态  默认为false
     loading: {
@@ -68,17 +57,17 @@ export default {
     // 设置当前组件大小 默认设置中等medium
     size: {
       type: String,
-      default: () => "medium",
+      default: () => 'medium',
     },
     buttonStyle: {
       type: Object,
       dafault: () => {
-        return { color: "yollow" };
+        return { color: 'yollow' };
       },
     },
     textColor: {
       type: String,
-      default: () => "red",
+      default: () => 'red',
     },
   },
 };
