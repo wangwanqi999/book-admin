@@ -20,9 +20,11 @@ const routerPush = Router.prototype.push
 Router.prototype.push = function push(location) {
   return routerPush.call(this, location).catch((error) => error)
 }
+// api.virapi.com / vir_githubhf816e48h91g / demo / visualapi
+
 // 生成vue实例
 new Vue({
   router,
   store,
-  render: (h) => h(App),
+  render: (h) => h(App)
 }).$mount('#app')

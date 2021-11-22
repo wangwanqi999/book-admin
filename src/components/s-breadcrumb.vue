@@ -1,23 +1,18 @@
 <template>
   <div class="breadcrumb">
     <el-breadcrumb separator=">">
-      <el-breadcrumb-item
-        v-for="item in list"
-        :key="item"
-        :class="{ isWeight: true }"
-        >{{ item }}</el-breadcrumb-item
-      >
+      <el-breadcrumb-item v-for="item in list" :key="item" :class="{ isWeight: true }">{{ item }}</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>
 
 <script>
 export default {
-  name: "s-breadcrumb",
+  name: 's-breadcrumb',
   data() {
     return {
       list: [],
-      sortList: "",
+      sortList: '',
     };
   },
   watch: {
@@ -25,7 +20,7 @@ export default {
       deep: true,
       handler(newval) {
         console.log(newval);
-        this.list = newval.path.split("/");
+        this.list = newval.path.split('/');
         console.log(this.list);
         this.sortList = this.list[newval.length - 1];
       },
@@ -51,14 +46,12 @@ export default {
       return obj;
     },
   },
-
   mounted() {
-    this.list = this.$route.path.split("/");
+    this.list = this.$route.path.split('/');
     this.sortList = this.list[this.list.length - 1];
   },
 };
 </script>
-
 <style scope>
 .breadcrumb {
   border: 3px solid red;

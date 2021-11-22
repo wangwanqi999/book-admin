@@ -20,9 +20,9 @@ export default {
       show: false,
       text: '加载中...',
       progressColor: '#ff0000',
-    }
+    };
   },
-}
+};
 </script>
 
 <style>
