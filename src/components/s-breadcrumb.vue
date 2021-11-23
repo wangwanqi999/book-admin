@@ -1,56 +1,62 @@
 <template>
   <div class="breadcrumb">
     <el-breadcrumb separator=">">
-      <el-breadcrumb-item v-for="item in list" :key="item" :class="{ isWeight: true }">{{ item }}</el-breadcrumb-item>
+      <el-breadcrumb-item v-for="item in list" :key="item" :class="{ isWeight: true }">
+        {{ item }}
+      </el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>
 
 <script>
 export default {
-  name: 's-breadcrumb',
+  name: 'SBreadcrumb',
   data() {
     return {
-      list: [],
-      sortList: '',
-    };
+      list: []
+    }
   },
   watch: {
     $route: {
       deep: true,
       handler(newval) {
-        console.log(newval);
-        this.list = newval.path.split('/');
-        console.log(this.list);
-        this.sortList = this.list[newval.length - 1];
-      },
-    },
+        // this.list = newval.path.split('/')
+        this.getList()
+      }
+    }
+  },
+  mounted() {
+    this.getList()
   },
   methods: {
+    getList() {
+      this.list = []
+      // 取出子项
+      const arrayRoute = this.$route.matched.slice(1, this.$route.matched.length)
+      arrayRoute.forEach((item) => {
+        this.$set(this.list, this.list.length, item.meta.title)
+      })
+    },
     // 数组平铺
     getAllRoutes(params, route) {
       if (!Array.isArray(params)) {
-        return {};
+        return {}
       }
-      let obj = {};
+      let obj = {}
       params.forEach((item) => {
-        if (item.path == route) {
-          obj = item;
+        if (item.path === route) {
+          obj = item
         } else {
           if (item.children) {
-            let routes = item.children;
-            obj = this.getAllRoutes(routes, route);
+            const routes = item.children
+            obj = this.getAllRoutes(routes, route)
           }
         }
-      });
-      return obj;
-    },
-  },
-  mounted() {
-    this.list = this.$route.path.split('/');
-    this.sortList = this.list[this.list.length - 1];
-  },
-};
+      })
+      return obj
+    }
+  }
+}
 </script>
 <style scope>
 .breadcrumb {

@@ -3,9 +3,13 @@ import sButton from '../../components/s-button.vue'
 import sloading from '../../components/componentsTable/s-loading'
 import sMenu from '../../views/Home/s-menu.vue'
 // 导入自定义指令
+import VideoPlayer from 'vue-video-player'
+import 'vue-video-player/src/custom-theme.css'
+import 'video.js/dist/video-js.css'
+
 import { getToString } from './type'
-let filters = { getToString: getToString }
-//这里的 icon 要换成你本地的   注册loading组件
+const filters = { getToString: getToString }
+// 这里的 icon 要换成你本地的   注册loading组件
 // 局部注册组件
 import {
   Pagination,
@@ -84,9 +88,9 @@ import {
   Loading,
   MessageBox,
   Message,
-  Notification,
+  Notification
 } from 'element-ui'
-const openAfter = function () {
+const openAfter = () => {
   // 在body上添加classname名称为allblur的类名
   document.getElementById('app').classList.add('allblur')
   // 同时出发打开事件
@@ -94,7 +98,7 @@ const openAfter = function () {
 }
 // 重写打开事件
 Dialog.methods.open = openAfter
-const leaveAfter = function () {
+const leaveAfter = () => {
   document.getElementById('app').classList.remove('allblur')
   // 同时触发关闭事件
   this.$emit('closed')
@@ -103,7 +107,7 @@ const leaveAfter = function () {
 Dialog.methods.closed = leaveAfter
 const componentObject = { sButton: sButton, sMenu: sMenu }
 const ElementUI = {
-  install: function () {
+  install: () => {
     for (const key in componentObject) {
       console.log(key)
       Vue.component(key, componentObject[key])
@@ -111,6 +115,7 @@ const ElementUI = {
     Object.keys(filters).forEach((key) => {
       Vue.filter(key, filters[key])
     })
+    Vue.use(VideoPlayer)
     Vue.use(Pagination)
     Vue.use(Dialog)
     Vue.use(Autocomplete)
@@ -188,9 +193,9 @@ const ElementUI = {
     Vue.use(sloading, {
       icon: require('../../assets/mainLogo.jpeg'),
       progressColor: 'blue',
-      text: '正在加载中。。。。。。',
+      text: '正在加载中。。。。。。'
     })
-  },
+  }
 }
 Vue.prototype.$loading = Loading.service
 Vue.prototype.$msgbox = MessageBox

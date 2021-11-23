@@ -4,6 +4,12 @@ import App from './App.vue'
 // 导入路由
 import router from './router'
 import store from './store'
+import VideoPlayer from 'vue-video-player'
+import 'vue-video-player/src/custom-theme.css'
+import 'video.js/dist/video-js.css'
+
+Vue.use(VideoPlayer)
+
 // 导入element
 import ElementUI from './commons/utils/diologHelper'
 import 'element-ui/lib/theme-chalk/index.css'

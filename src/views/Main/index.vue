@@ -1,6 +1,6 @@
 <template>
   <div id="main1">
-    <div class="main12" v-for="item in contentList" :key="item.text">
+    <div v-for="item in contentList" :key="item.text" class="main12">
       {{ item.text }}
     </div>
   </div>
@@ -9,26 +9,20 @@
 export default {
   data() {
     return {
-      contentList: [
-        { text: "1" },
-        { text: "2" },
-        { text: "3" },
-        { text: "4" },
-        { text: "5" },
-      ],
-    };
+      contentList: [{ text: '1' }, { text: '2' }, { text: '3' }, { text: '4' }, { text: '5' }]
+    }
   },
   mounted() {
-    const getNumber = function () {
-      return Math.round(Math.random() * 10000);
-    };
+    const getNumber = () => {
+      return Math.round(Math.random() * 10000)
+    }
     this.contentList = this.contentList.map((item) => {
-      item.text = getNumber();
-      return item;
-    });
-    console.log(this.contentList);
-  },
-};
+      item.text = getNumber()
+      return item
+    })
+    console.log(this.contentList)
+  }
+}
 </script>
 <style scoped>
 .main12 {

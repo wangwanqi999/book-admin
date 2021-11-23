@@ -1,57 +1,52 @@
 <template>
   <div>
     <template v-for="item in DataList">
-      <el-menu-item
-        v-if="!item.children"
-        @click="goRouter(item)"
-        :index="item.path"
-        :key="item.path"
-      >
-        <i class="el-icon-menu"></i>
+      <el-menu-item v-if="!item.children" :key="item.path" :index="item.path" @click="goRouter(item)">
+        <i class="el-icon-menu" />
         <span slot="title">{{ item.meta.title }}</span>
       </el-menu-item>
-      <el-submenu v-else :index="item.path" :key="item.path">
+      <el-submenu v-else :key="item.path" :index="item.path">
         <template slot="title">
-          <i class="el-icon-location"></i>
+          <i class="el-icon-location" />
           <span>{{ item.meta.title }}</span>
         </template>
-        <s-menu :DataList="item.children"></s-menu>
+        <s-menu :data-list="item.children" />
       </el-submenu>
     </template>
   </div>
 </template>
 <script>
 export default {
-  name: "sMenu",
-  data() {
-    return {};
-  },
+  name: 'SMenu',
   props: {
     DataList: {
       require: true,
-      type: Array,
-    },
+      type: Array
+    }
+  },
+  data() {
+    return {}
   },
   watch: {
     $route: {
       deep: true,
       handler(newval) {
-        let list = [];
+        const list = []
         newval.matched.forEach((item, index) => {
-          if (index != 0) {
-            list.push(item.path);
+          if (index !== 0) {
+            list.push(item.path)
           }
-        });
-        this.list = list;
-      },
-    },
+        })
+        this.list = list
+      }
+    }
   },
   methods: {
     goRouter() {
-      console.log(this.$route);
-    },
-  },
-};
+      console.log(this.$route)
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 /*隐藏文字*/
